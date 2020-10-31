@@ -1,0 +1,191 @@
+<app-header></app-header>
+<div class="container profile-wrapper">
+  <div class="row m-2">
+    <div class="col-md-3 align-items-center">
+      <div class="picture-container">
+        <img
+          class="profile-image"
+          src="assets\profile_picture.png"
+          alt="Profile image"
+        />
+      </div>
+    </div>
+    <div class="col-md-7 profile-content">
+      <h1>{{ template.personalInfo.name }}</h1>
+      <div class="">
+        <h2>{{ template.personalInfo.occupation }}</h2>
+        <h5>{{ template.personalInfo.summary }}</h5>
+        <p>{{ template.personalInfo.description }}</p>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <a class="btn btn-primary contact-btn">Contact Me</a>
+    </div>
+  </div>
+  <hr />
+  <section class="m-2">
+    <div class="d-flex mb-2">
+      <span class="badge badge-primary custom-badge">
+        <i class="fa fa-asterisk"></i>
+      </span>
+      <h3 class="ml-2">Skills Overview</h3>
+    </div>
+    <h6>I bring value to the table by leveraging most out of my skills.</h6>
+    <div class="card text-center">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <ng-container *ngIf="template && template.skills; let i = index">
+              <ul
+                class="list-group-flush pl-1"
+                *ngFor="let skill of template.skills | slice: 0:4"
+              >
+                <li class="list-group-item">
+                  <h6 class="text-left">{{ skill.proficiency }}</h6>
+                  <div class="progress custom-progress">
+                    <div
+                      class="progress-bar progress-bar-animated active"
+                      [style.width]="(skill.level / 5) * 100 + '%'"
+                    ></div>
+                    <br />
+                  </div>
+                </li>
+              </ul>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <ng-container *ngIf="template && template.skills">
+              <ul
+                class="list-group-flush pl-1"
+                *ngFor="let skill of template.skills | slice: 4:8"
+              >
+                <li class="list-group-item">
+                  <h6 class="text-left">{{ skill.proficiency }}</h6>
+                  <div class="progress custom-progress">
+                    <div
+                      class="progress-bar progress-bar-animated active"
+                      [style.width]="(skill.level / 5) * 100 + '%'"
+                    ></div>
+                    <br />
+                  </div>
+                </li>
+              </ul>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr />
+  <section class="m-2">
+    <div class="d-flex mb-2">
+      <span class="badge badge-primary custom-badge">
+        <i class="fa fa-briefcase"></i>
+      </span>
+      <h3 class="ml-2">Company I've worked with</h3>
+    </div>
+    <div class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <ng-container *ngFor="let item of template.workHistory; let i = index">
+          <li
+            data-target="#carouselExampleIndicators"
+            [attr.data-slide-to]="i"
+          ></li>
+        </ng-container>
+      </ol>
+      <div class="carousel-inner">
+        <div
+          class="carousel-item active"
+          *ngFor="let item of template.workHistory"
+        >
+          <!-- <img class="d-block w-100" src="..." alt="First slide"> -->
+          <div class="row">
+            <div class="col-md-4" *ngFor="let item of template.workHistory">
+              <div class="card">
+                <div class="card-header">
+                  <h4>
+                    {{ item.companyName }}
+                  </h4>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.jobRole }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    {{ item.joiningDate + "-" + item.releaseDate }}
+                  </h6>
+                  <ul *ngFor="let item of item.taskDescription">
+                    <li>
+                      {{ item }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </section>
+  <hr />
+  <section class="m-2">
+    <div class="d-flex mb-2">
+      <span class="badge badge-primary custom-badge">
+        <i class="fa fa-graduation-cap"></i>
+      </span>
+      <h3 class="ml-2">Education</h3>
+    </div>
+    <div class="row card-group">
+      <div class="col-4" *ngFor="let item of template.education">
+        <div class="card">
+          <div class="card-header">
+            <h4>
+              {{ item.degree }}
+            </h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.college }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ item.passoutYear }}
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr />
+  <section class="m-2">
+    <div class="d-flex mb-2">
+      <span class="badge badge-primary custom-badge">
+        <i class="fa fa-trophy"></i>
+      </span>
+      <h3 class="ml-2">Achievements</h3>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <ul class="list-group-flush">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let item of template.achievementTitle"
+          >
+            {{ item }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr />
+  <div>Resume temporary end line----------</div>
+
+  <div>
+    <h6>discover my amazing artspace here</h6>
+    <div>images, drawings and paintings come here</div>
+  </div>
+</div>
+<router-outlet></router-outlet>
