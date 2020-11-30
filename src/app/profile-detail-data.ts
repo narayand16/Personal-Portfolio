@@ -1,8 +1,8 @@
 export const profileDetails = {
     personalInfo: {
-        name: 'Sanchit Patil',
+        name: 'Sucheta Pawar',
         occupation: 'Full Stack Developer',
-        description: 'Strong IT professional with 4 years of experience into full stack development',
+        description: 'Strong IT professional with more than 4 years of experience into full stack development',
         summary: 'I am an effective communicator with exceptional analytical, technical and client relationship management skills.',
         contact: '1234567890',
         city: 'Navi Mumbai',
